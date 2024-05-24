@@ -1,20 +1,18 @@
 ﻿@model List<Categorys>
+@section MinTitel{
+    Category
+}
 @if(Model.Any()){
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Responsive Hover Table</h3>
-
+                    <h3 class="card-title">Category Details</h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
+                            <a class="btn btn-info" asp-controller="Categorys" asp-action="Create">
+                                <i class="fas fa-plus" style="display: inline-block; margin-right: 5px;"></i>Create
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -25,7 +23,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Create Date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,7 +32,17 @@
                                 <tr>
                                     <td>@item.Id</td>
                                     <td>@item.name</td>
-                                    <td>@item.createDate</td>
+                                    <td>
+                                        <a class="btn btn-info" asp-controller="Categorys" asp-action="Edit" asp-route-id="@item.Id">
+                                            <i class="far fa-edit me-2" style="display: inline-block; margin-right: 5px;"></i>Edit
+                                        </a>
+                                        <a class="btn btn-warning" asp-controller="Categorys" asp-action="Details" asp-route-id="@item.Id">
+                                            <i class="fas fa-info me-2" style="display: inline-block; margin-right: 5px;"></i>Details
+                                        </a>
+                                        <a class="btn btn-danger" asp-controller="Categorys" asp-action="Delete" asp-route-id="@item.Id">
+                                            <i class="fas fa-trash-alt me-2" style="display: inline-block; margin-right: 5px;"></i>Delete
+                                        </a>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -52,7 +60,10 @@ else
         <div class="card-header">
             <h3 class="card-title">Warning</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <a class="btn btn-primary" asp-controller="Categorys" asp-action="Create">
+                        <i class="fas fa-plus" style="display: inline-block; margin-right: 5px;"></i>Create
+                    </a>
+                <button type="button" class="btn btn-danger" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                 </button>
             </div>

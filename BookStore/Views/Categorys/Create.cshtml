@@ -1,0 +1,15 @@
+﻿@using BookStore.Models.ViewModel
+@model CategorysVM
+@section MinTitel {
+    @(Model?.Id == null ? "Create" : "Edite")
+}
+<form asp-controller="Categorys">
+    <div class="mb-3">
+        <label asp-for="name" class="form-label">Caregory Name</label>
+        <input type="text" class="form-control" asp-for="name" />
+        <span asp-validation-for="name" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary" asp-controller="Categorys">
+        @(Model?.Id == null ? "Create" : "Edite")
+    </button>
+</form> 
