@@ -1,0 +1,80 @@
+﻿@using BookStore.Models.ViewModel
+@model List<AuthorVM>
+@section MinTitel {
+    Author 
+}
+@if (Model.Any())
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Author Details</h3>
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <a class="btn btn-info" asp-controller="Author" asp-action="Create">
+                                <i class="fas fa-plus" style="display: inline-block; margin-right: 5px;"></i>Create
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in @Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Name</td>
+                                    <td>
+                                        <a class="btn btn-info" asp-controller="Author" asp-action="Edit" asp-route-id="@item.Id">
+                                            <i class="far fa-edit me-2" style="display: inline-block; margin-right: 5px;"></i>Edit
+                                        </a>
+                                        <a class="btn btn-warning" asp-controller="Author" asp-action="Details" asp-route-id="@item.Id">
+                                            <i class="fas fa-info me-2" style="display: inline-block; margin-right: 5px;"></i>Details
+                                        </a>
+                                        <a class="btn btn-danger" asp-controller="Author" asp-action="Delete" asp-route-id="@item.Id">
+                                            <i class="fas fa-trash-alt me-2" style="display: inline-block; margin-right: 5px;"></i>Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+}
+else
+{
+    <div class="card bg-warning">
+        <div class="card-header">
+            <h3 class="card-title">Warning</h3>
+            <div class="card-tools">
+                <a class="btn btn-primary" asp-controller="Categorys" asp-action="Create">
+                    <i class="fas fa-plus" style="display: inline-block; margin-right: 5px;"></i>Create
+                </a>
+                <button type="button" class="btn btn-danger" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+            <!-- /.card-tools -->
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            Thers No Data In Autors
+        </div>
+        <!-- /.card-body -->
+    </div>
+}

@@ -1,0 +1,93 @@
+﻿@using BookStore.Models.ViewModel
+@model List<BookVM>
+@section MinTitel {
+    Book
+}
+
+@if (Model.Any())
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Category Details</h3>
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <a class="btn btn-info" asp-controller="Book" asp-action="Create">
+                                <i class="fas fa-plus" style="display: inline-block; margin-right: 5px;"></i>Create
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Publisher</th>
+                                <th>PublisherDate</th>
+                                <th>Author</th>
+                                <th> Img </th>
+                                <th> Categories </th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in @Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Title</td>
+                                    <td>@item.Publisher</td>
+                                    <td>@item.PublisherDate</td>
+                                    <td>@item.Author</td>
+                                    <td>
+                                        <img src="~/Img/Book/@item.ImgUrl" width="50px" height="50px" />
+                                    </td>
+                                    <td>@string.Join(",",item.Categories)</td>
+                                    <td>
+                                        <a class="btn btn-info" asp-controller="Book" asp-action="Edit" asp-route-id="@item.Id">
+                                            <i class="far fa-edit me-2" style="display: inline-block; margin-right: 5px;"></i>Edit
+                                        </a>
+                                        <a class="btn btn-warning" asp-controller="Book" asp-action="Details" asp-route-id="@item.Id">
+                                            <i class="fas fa-info me-2" style="display: inline-block; margin-right: 5px;"></i>Details
+                                        </a>
+                                        <a class="btn btn-danger" asp-controller="Book" asp-action="Delete" asp-route-id="@item.Id">
+                                            <i class="fas fa-trash-alt me-2" style="display: inline-block; margin-right: 5px;"></i>Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+}
+else
+{
+    <div class="card bg-warning">
+        <div class="card-header">
+            <h3 class="card-title">Warning</h3>
+            <div class="card-tools">
+                <a class="btn btn-primary" asp-controller="Book" asp-action="Create">
+                    <i class="fas fa-plus" style="display: inline-block; margin-right: 5px;"></i>Create
+                </a>
+                <button type="button" class="btn btn-danger" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+            <!-- /.card-tools -->
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            Thers No Data In Category
+        </div>
+        <!-- /.card-body -->
+    </div>
+}

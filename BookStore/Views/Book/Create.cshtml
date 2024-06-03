@@ -1,0 +1,57 @@
+﻿@using BookStore.Models.ViewModel
+@model BookVMForm 
+
+@section MinTitel {
+    @(Model?.Id == null ? "Create" : "Create")
+}
+
+<form asp-controller="Book" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label">Book Name</label>
+        <input type="text" class="form-control" asp-for="Title" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+        <div class="mb-3">
+        <label asp-for="Publisher" class="form-label">Publisher Name</label>
+        <input type="text" class="form-control" asp-for="Publisher" />
+        <span asp-validation-for="Publisher" class="text-danger"></span>
+    </div>
+        <div class="mb-3">
+        <label asp-for="PublisherDate" class="form-label">PublisherDate</label>
+        <input type="date" class="form-control" asp-for="PublisherDate" />
+        <span asp-validation-for="PublisherDate" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Description</label>
+        <input type="text" class="form-control" asp-for="Description" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ImgUrl" class="form-label">Select Img</label>
+        <input type="file" class="form-control" asp-for="ImgUrl" />
+        <span asp-validation-for="ImgUrl" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="AuthorId" class="form-label">Select Author</label>
+        <select class="form-select form-select-sm custom-select"
+                aria-label="Small select example"
+            asp-for="AuthorId"
+            asp-items="Model.Authors">
+            <option selected>Select AuthorId</option>
+        </select>
+        <span asp-validation-for="AuthorId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Categories" class="form-label">Select Categories</label>
+        <select class="form-select form-select-sm"
+                aria-label="Small select example"
+                asp-for="Categories"
+                asp-items="Model.Categories">
+            <option selected>Select Categories</option>
+        </select>
+        <span asp-validation-for="Categories" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary" asp-controller="Book">
+        @(Model?.Id == null ? "Create" : "Create")
+    </button>
+</form> 

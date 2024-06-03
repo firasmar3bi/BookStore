@@ -51,7 +51,6 @@ namespace BookStore.Controllers
             {
                 Id = category.Id,
                 name = category.name,
-
             };
             return View("Create", viewModel);
         }

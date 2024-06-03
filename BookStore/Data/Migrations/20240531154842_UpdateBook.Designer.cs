@@ -4,6 +4,7 @@ using BookStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240531154842_UpdateBook")]
+    partial class UpdateBook
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,14 +97,17 @@ namespace BookStore.Data.Migrations
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("categorysId")
-                        .HasColumnType("int");
+                    b.Property<string>("BookName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoryId", "BookId");
 
                     b.HasIndex("BookId");
-
-                    b.HasIndex("categorysId");
 
                     b.ToTable("BookCategory");
                 });
@@ -345,19 +351,11 @@ namespace BookStore.Data.Migrations
 
             modelBuilder.Entity("BookStore.Models.BookCategory", b =>
                 {
-                    b.HasOne("BookStore.Models.Book", "Book")
+                    b.HasOne("BookStore.Models.Book", null)
                         .WithMany("Categories")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("BookStore.Models.Categorys", "categorys")
-                        .WithMany()
-                        .HasForeignKey("categorysId");
-
-                    b.Navigation("Book");
-
-                    b.Navigation("categorys");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

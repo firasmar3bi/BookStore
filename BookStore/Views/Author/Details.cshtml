@@ -1,0 +1,26 @@
+﻿@using BookStore.Models.ViewModel
+@model AuthorVM
+@section MinTitel {
+    Author
+}
+<div class="card-body table-responsive p-0">
+    <table class="table table-hover text-nowrap">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Create Date</th>
+                <th>Update Date</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.Name</td>
+                <td>@Model.CreatedDate</td>
+                <td>@Model.UpdatedDate</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
